@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
     packaging {
         resources {
@@ -59,6 +59,11 @@ dependencies {
     val roomVersion = "2.6.1"
     val daggerVersion = "2.48"
 
+    implementation(project(":core"))
+    implementation(project(":database"))
+    implementation(project(":feature:entry"))
+    implementation(project(":feature:creation"))
+    implementation(project(":feature:trainings"))
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
     implementation("androidx.activity:activity-compose:1.9.0")
@@ -95,7 +100,7 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:1.5.1")
     implementation ("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation ("androidx.navigation:navigation-ui-ktx:2.5.3")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.navigation:navigation-compose:2.8.1")
     implementation("com.squareup:javapoet:1.13.0")
     kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
 }

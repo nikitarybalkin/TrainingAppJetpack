@@ -10,37 +10,31 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.rememberNavController
+import com.example.trainingappjetpack.di.App
+import com.example.trainingappjetpack.presentation.AppNavHost
 import com.example.trainingappjetpack.ui.theme.TrainingAppJetpackTheme
+import com.feature.trainings.presentation.Routes
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var factory: ViewModelProvider.Factory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as App).component.inject(this)
         setContent {
-            TrainingAppJetpackTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+            var navController = rememberNavController()
+            AppNavHost(
+                modifier = Modifier,
+                navController = navController,
+                startDestination = Routes.CREATETRAININGSCREEN.name,
+                viewModelFactory = factory
+            )
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TrainingAppJetpackTheme {
-        Greeting("Android")
-    }
-}

@@ -1,0 +1,26 @@
+package com.example.database.data
+
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class TrainingLocalDataSourceImpl @Inject constructor(private val trainingDao: TrainingDao): TrainingLocalDataSource {
+    override fun getAll(): Flow<List<TrainingEntity>> {
+        return trainingDao.getAll()
+    }
+
+    override fun getOneTrainExercises(nameOfTrain: String): Flow<List<String?>> {
+        return trainingDao.getOneTrainExercises(nameOfTrain)
+    }
+
+    override suspend fun delete(table: TrainingEntity) {
+        trainingDao.delete(table)
+    }
+
+    override suspend fun insertTable(table: TrainingEntity) {
+        trainingDao.insertTable(table)
+    }
+
+    override suspend fun deleteAll() {
+        trainingDao.deleteAll()
+    }
+}

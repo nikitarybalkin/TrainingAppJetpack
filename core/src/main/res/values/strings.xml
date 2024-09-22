@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Training App Jetpack</string>
+    <string name="today_is_prefect_day">Today is perfect day to sports</string>
+    <string name="your_last_training">Your last training</string>
+    <string name="date">Date</string>
+    <string name="name_of_train">Name of train</string>
+    <string name="time">Time</string>
+    <string name="creation_of_training">Creation of training</string>
+    <string name="name_of_exercise">Name of exercise</string>
+    <string name="next_exercise">Next exercise</string>
+    <string name="save_training">Save training</string>
+    <string name="count_of_exercises">Count of exercises</string>
+
+</resources>
