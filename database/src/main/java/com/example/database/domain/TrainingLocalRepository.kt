@@ -1,6 +1,5 @@
 package com.example.database.domain
 
-import com.example.database.data.TrainingEntity
 import com.example.database.data.model.TrainingLocalModel
 import kotlinx.coroutines.flow.Flow
 
@@ -14,4 +13,5 @@ interface TrainingLocalRepository {
     suspend fun insertTable(table: TrainingLocalModel)
 
     suspend fun deleteAll()
+
 }

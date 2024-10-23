@@ -29,4 +29,6 @@ class TrainingLocalRepositoryImpl @Inject constructor(private val trainingLocalD
         trainingLocalDataSource.deleteAll()
     }
 
+
+
 }

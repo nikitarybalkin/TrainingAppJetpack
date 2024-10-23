@@ -3,7 +3,6 @@ package com.example.database.data
 import com.example.database.data.model.TrainingResultLocalModel
 import com.example.database.data.model.mapToData
 import com.example.database.data.model.mapToDomain
-import com.example.database.domain.TrainingLocalRepository
 import com.example.database.domain.TrainingResultLocalRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -14,8 +13,8 @@ class TrainingResultLocalRepositoryImpl @Inject constructor(private val training
         return trainingResultLocalDataSource.getAll().map { list -> list.map { it.mapToDomain() } }
     }
 
-    override fun getLastTR(): Flow<List<TrainingResultLocalModel?>> {
-        return trainingResultLocalDataSource.getLastTR().map { list -> list.map { it?.mapToDomain() } }
+    override fun getLastTR(): Flow<TrainingResultLocalModel?> {
+        return trainingResultLocalDataSource.getLastTR().map { it?.mapToDomain() }
     }
 
     override suspend fun delete(table: TrainingResultLocalModel) {
@@ -29,4 +28,9 @@ class TrainingResultLocalRepositoryImpl @Inject constructor(private val training
     override suspend fun deleteAll() {
         trainingResultLocalDataSource.deleteAll()
     }
+
+    override suspend fun getTrainingResultById(id: Int): TrainingResultLocalModel? {
+        return trainingResultLocalDataSource.getTrainingResultById(id)?.mapToDomain()
+    }
+
 }

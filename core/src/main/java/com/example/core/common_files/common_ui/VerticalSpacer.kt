@@ -7,8 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 
 @Composable
-fun Margin (
-    height: Dp
-) {
+fun VerticalMargin(height: Dp) {
     Spacer(modifier = Modifier.height(height))
 }

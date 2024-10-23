@@ -10,6 +10,36 @@
     <string name="name_of_exercise">Название упражнения</string>
     <string name="next_exercise">Следующее упражнение</string>
     <string name="save_training">Сохранить тренировку</string>
-    <string name="count_of_exercises">Количество упражнений</string>
+    <string name="count_of_exercises">Количество упражнений:</string>
+    <string name="enter_name">Введите название тренировки</string>
+    <string name="workout_must_contain">Тренировка должна содержать хотя бы одно упражнение</string>
+    <string name="start_train">Начать тренировку</string>
+    <string name="main">Главная</string>
+    <string name="your_trainings">Твои тренировки</string>
+    <string name="add">Добавить</string>
+    <string name="your_results">Твои результаты</string>
+    <string name="delete">Удалить</string>
+    <string name="no_training_saved">Ни одной тренировки не сохранено</string>
+    <string name="to_choose_exercise">Чтобы выбрать упражнение нажмите здесь</string>
+    <string name="number_of_set">Номер подхода</string>
+    <string name="enter_count_in_set">Введите количество повторений</string>
+    <string name="enter_weight">Введите вес</string>
+    <string name="next_set">Следующий подход</string>
+    <string name="finish_training">Закончить тренировку</string>
+    <string name="all_fields_must">Все поля должны быть заполнены</string>
+    <string name="quantity_of_repeats">Количество повторений</string>
+    <string name="quantity_of_sets">Количество подходов</string>
+    <string name="weight">Веса</string>
+    <string name="name_of_train_s">Название тренировки: %1s</string>
+    <string name="quantity_of_exercises_s">Количество упражнений: %1s</string>
+    <string name="quantity_of_repeats_s">Количество повторений: %1s</string>
+    <string name="weights_s">Веса: %1s</string>
+    <string name="name_of_exercise_s">Название упражнения: %1s</string>
+    <string name="quantity_of_sets_s">Количество подходов: %1s</string>
+    <string name="open_last_results">Посмотреть результаты прошлых тренировок</string>
+    <string name="alert_text">Вы уверены, что хотите перейти в другой раздел? Введённые данные не сохранятся</string>
+    <string name="alert_title">Введённые данные не будут сохранены</string>
+    <string name="alert_button_yes">Да</string>
+    <string name="alert_button_no">Нет, я передумал</string>
 
 </resources>

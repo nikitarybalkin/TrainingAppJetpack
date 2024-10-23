@@ -1,5 +1,6 @@
 package com.example.database.data
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -8,7 +9,7 @@ class TrainingResultLocalDataSourceImpl @Inject constructor(private val training
         return trainingResultDao.getAll()
     }
 
-    override fun getLastTR(): Flow<List<TrainingResultEntity?>> {
+    override fun getLastTR(): Flow<TrainingResultEntity?> {
         return trainingResultDao.getLastTR()
     }
 
@@ -17,10 +18,15 @@ class TrainingResultLocalDataSourceImpl @Inject constructor(private val training
     }
 
     override suspend fun insert(table: TrainingResultEntity) {
+        Log.d("LOL", "trainingResult datasource insert")
         trainingResultDao.insert(table)
     }
 
     override suspend fun deleteAll() {
         trainingResultDao.deleteAll()
+    }
+
+    override suspend fun getTrainingResultById(id: Int): TrainingResultEntity? {
+        return trainingResultDao.getTrainingResultById(id)
     }
 }

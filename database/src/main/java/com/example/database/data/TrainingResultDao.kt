@@ -16,7 +16,12 @@ interface TrainingResultDao {
     @Query("SELECT * \n" +
             "    FROM trainingResultTable\n" +
             "    WHERE id = (SELECT MAX(id) FROM trainingResultTable);")
-    fun getLastTR(): Flow<List<TrainingResultEntity?>>
+    fun getLastTR(): Flow<TrainingResultEntity?>
+
+    @Query("SELECT * \n" +
+            "    FROM trainingResultTable\n" +
+            "    WHERE id = :id;")
+    suspend fun getTrainingResultById(id: Int): TrainingResultEntity?
 
     @Delete
     suspend fun delete(table: TrainingResultEntity)

@@ -10,7 +10,7 @@ class TrainingResultLocalUseCase @Inject constructor(private val trainingResultL
         return trainingResultLocalRepository.getAll()
     }
 
-    fun getLastTR(): Flow<List<TrainingResultLocalModel?>> {
+    fun getLastTR(): Flow<TrainingResultLocalModel?> {
         return trainingResultLocalRepository.getLastTR()
     }
 
@@ -24,6 +24,10 @@ class TrainingResultLocalUseCase @Inject constructor(private val trainingResultL
 
     suspend fun deleteAll() {
         trainingResultLocalRepository.deleteAll()
+    }
+
+    suspend fun getTrainingResultById(id: Int): TrainingResultLocalModel? {
+        return trainingResultLocalRepository.getTrainingResultById(id)
     }
 
 }

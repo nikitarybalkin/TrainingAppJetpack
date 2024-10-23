@@ -1,5 +1,6 @@
 package com.example.database.data
 
+import android.util.Log
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -18,6 +19,7 @@ class TrainingLocalDataSourceImpl @Inject constructor(private val trainingDao: T
 
     override suspend fun insertTable(table: TrainingEntity) {
         trainingDao.insertTable(table)
+        Log.d("LOL", "datasource insert")
     }
 
     override suspend fun deleteAll() {

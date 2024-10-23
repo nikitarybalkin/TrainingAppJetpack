@@ -10,7 +10,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 26
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -45,7 +45,7 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     //Room and Dagger
-    kapt("androidx.room:room-compiler:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
     kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
     ksp("com.google.dagger:dagger-compiler:$daggerVersion")
     annotationProcessor("com.google.dagger:dagger-compiler:$daggerVersion")
@@ -58,7 +58,7 @@ dependencies {
     implementation("androidx.room:room-rxjava3:$roomVersion")
     implementation("androidx.room:room-runtime:$roomVersion")
     //Gson
-    implementation("com.google.code.gson:gson:2.10")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.moshi:moshi:1.14.0")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
 }

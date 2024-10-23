@@ -9,6 +9,36 @@
     <string name="name_of_exercise">Name of exercise</string>
     <string name="next_exercise">Next exercise</string>
     <string name="save_training">Save training</string>
-    <string name="count_of_exercises">Count of exercises</string>
+    <string name="count_of_exercises">Count of exercises:</string>
+    <string name="enter_name">Enter name of the training</string>
+    <string name="workout_must_contain">The workout must contain at least one exercise</string>
+    <string name="start_train">Start train</string>
+    <string name="main">Main</string>
+    <string name="your_trainings">Your trainings</string>
+    <string name="add">Add</string>
+    <string name="your_results">Your results</string>
+    <string name="delete">Delete</string>
+    <string name="no_training_saved">No one training saved</string>
+    <string name="to_choose_exercise">To choose the exercise tap here</string>
+    <string name="number_of_set">Number of set</string>
+    <string name="enter_count_in_set">Enter count in set</string>
+    <string name="enter_weight">Enter the weight</string>
+    <string name="next_set">Next set</string>
+    <string name="finish_training">Finish training</string>
+    <string name="all_fields_must">All fields must be filled</string>
+    <string name="quantity_of_repeats">Quantity of repeats</string>
+    <string name="quantity_of_sets">Quantity of sets</string>
+    <string name="weight">Weights</string>
+    <string name="name_of_exercise_s">Name of exercise: %1s</string>
+    <string name="quantity_of_sets_s">Quantity of sets: %1s</string>
+    <string name="name_of_train_s">Name of train: %1s</string>
+    <string name="quantity_of_exercises_s">Quantity of exercises: %1s</string>
+    <string name="quantity_of_repeats_s">Quantity of repeats: %1s</string>
+    <string name="weights_s">Weights: %1s</string>
+    <string name="open_last_results">Open last trainings results</string>
+    <string name="alert_text">Are you sure you want to leave this screen? The entered data will not be saved</string>
+    <string name="alert_title">The entered data will not be saved</string>
+    <string name="alert_button_yes">Yes</string>
+    <string name="alert_button_no">No, I changed my mind</string>
 
 </resources>
