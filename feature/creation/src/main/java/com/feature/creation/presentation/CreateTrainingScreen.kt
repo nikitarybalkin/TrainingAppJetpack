@@ -1,6 +1,7 @@
 package com.feature.creation.presentation
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -57,16 +59,23 @@ fun CreateTrainingScreen(
     val showDialog = remember { mutableStateOf(false) }
     fun clickNextExercise() {
         viewModel.listOfExercises.add(viewModel.nameOfExercise)
+        Log.d("LOL", "next ex works ${viewModel.listOfExercises[viewModel.listOfExercises.lastIndex]}")
         viewModel.nameOfExercise = ""
         nameOfExercise.value = ""
     }
 
     fun clickSaveTraining() {
         if (viewModel.nameOfTrain != "") {
+            Log.d("LOL", "fun works savetrain")
             if (viewModel.listOfExercises.size != 0) {
+                Log.d("LOL", "listExercise != 0")
                 viewModel.sendToDatabase()
                 navController.navigate(Routes.ENTRYSCREEN.name)
-            } else Toast.makeText(context, context.resources.getString(com.example.core.R.string.no_training_saved), Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(
+                context,
+                context.resources.getString(com.example.core.R.string.no_training_saved),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
     Surface(
@@ -88,17 +97,19 @@ fun CreateTrainingScreen(
             VerticalMargin(Paddings.medium)
             DesignedTextField(
                 textValue = nameOfTrain,
-                viewModel = viewModel
+                viewModel = viewModel,
+                isNameOfTrain = true
             )
             VerticalMargin(Paddings.medium)
             DesignedTextField(
                 textValue = nameOfExercise,
-                viewModel = viewModel
+                viewModel = viewModel,
+                isNameOfTrain = false
             )
             VerticalMargin(Paddings.medium)
             DoubleButton(
-                clickNextExercise = {clickNextExercise()},
-                clickSaveTraining = {clickSaveTraining()}
+                clickNextExercise = { clickNextExercise() },
+                clickSaveTraining = { clickSaveTraining() }
             )
         }
     }
@@ -116,13 +127,18 @@ fun CreateTrainingScreen(
 @Composable
 fun DesignedTextField(
     textValue: MutableState<String>,
-    viewModel: CreateTrainingViewModel
+    viewModel: CreateTrainingViewModel,
+    isNameOfTrain: Boolean
 ) {
     TextField(
         value = textValue.value,
         onValueChange = { new ->
             textValue.value = new
-            viewModel.nameOfExercise = new
+            if (isNameOfTrain) {
+                viewModel.nameOfTrain = new
+            } else viewModel.nameOfExercise = new
+
+
         },
         placeholder = { Text(stringResource(com.example.core.R.string.name_of_exercise)) },
         colors = TextFieldDefaults.colors(
@@ -143,7 +159,7 @@ fun DoubleButton(
     Box(
         modifier = Modifier
             .fillMaxWidth(0.8f)
-            .height(50.dp)
+            .height(70.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(colorResource(com.example.core.R.color.blue_light))
     ) {
@@ -153,13 +169,16 @@ fun DoubleButton(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Button(
-                modifier = Modifier,
-                onClick = {clickNextExercise()},
+                modifier = Modifier.fillMaxWidth(0.5f),
+                onClick = { clickNextExercise.invoke() },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
             ) {
                 Text(
                     text = stringResource(com.example.core.R.string.next_exercise),
-                    color = Color.Black
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    maxLines = 2,
+
                 )
             }
             Spacer(
@@ -171,12 +190,14 @@ fun DoubleButton(
             )
             Button(
                 modifier = Modifier,
-                onClick = {clickSaveTraining()},
+                onClick = { clickSaveTraining.invoke() },
                 colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent)
             ) {
                 Text(
                     text = stringResource(com.example.core.R.string.save_training),
-                    color = Color.Black
+                    color = Color.Black,
+                    textAlign = TextAlign.Center,
+                    maxLines = 2
                 )
             }
         }

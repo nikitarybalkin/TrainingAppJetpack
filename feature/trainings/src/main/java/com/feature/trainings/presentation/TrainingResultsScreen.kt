@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -28,6 +30,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.core.common_files.Paddings
+import com.example.core.common_files.common_ui.EmptyListText
 import com.example.core.common_files.common_ui.Routes
 import com.example.core.common_files.common_ui.VerticalMargin
 
@@ -42,70 +45,82 @@ fun TrainingResultsScreen(
 ) {
     val viewModel: TrainingsResultsViewModel = viewModel(factory = viewModelFactory)
     val trainingResults = viewModel.trainingResult.collectAsState()
-    LazyColumn(
-        modifier = Modifier.fillMaxSize()
-            .background(color = colorResource(com.example.core.R.color.grey)),
+    Surface(
+        modifier = Modifier.fillMaxWidth().fillMaxHeight(0.9f),
+        color = colorResource(com.example.core.R.color.grey)
     ) {
-        trainingResults.value?.let {
-            itemsIndexed(it) { index, item ->
-                Column(
-                    modifier =
-                    Modifier
-                        .clickable {
-                            if (!itIsBottomSheet)
-                                navController.navigate("${Routes.TRAININGRESULTSDETAILEDSCREEN.name}/${item.id}")
-                            else {
-                                bottomSheetIsDetailed!!.value = true
-                                idForDetailed.value = item.id
-                            }
-                        }
+        if (trainingResults.value != null) {
+            if (trainingResults.value!!.isNotEmpty()) {
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize()
+                        .background(color = colorResource(com.example.core.R.color.grey)),
                 ) {
-                    VerticalMargin(Paddings.medium)
-                    DesignedText(
-                        context.resources.getString(
-                            com.example.core.R.string.name_of_train_s,
-                            item.nameOfTrain
-                        )
-                    )
-                    VerticalMargin(Paddings.medium)
-                    DesignedText(
-                        context.resources.getString(
-                            com.example.core.R.string.quantity_of_exercises_s,
-                            item.exercises.size.toString()
-                        )
-                    )
-                    VerticalMargin(Paddings.medium)
-                    Box(modifier = Modifier.fillMaxWidth().padding(horizontal = Paddings.medium)) {
-                        Button(
-                            modifier = Modifier.fillMaxWidth(),
-                            onClick = {
-                                viewModel.deleteTrainingResult(item)
-                            },
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = colorResource(com.example.core.R.color.red_delete)
-                            )
+                    itemsIndexed(trainingResults.value!!) { index, item ->
+                        Column(
+                            modifier =
+                            Modifier
+                                .clickable {
+                                    if (!itIsBottomSheet)
+                                        navController.navigate("${Routes.TRAININGRESULTSDETAILEDSCREEN.name}/${item.id}")
+                                    else {
+                                        bottomSheetIsDetailed!!.value = true
+                                        idForDetailed.value = item.id
+                                    }
+                                }
                         ) {
-                            Text(
-                                text = stringResource(com.example.core.R.string.delete),
-                                fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
-                                fontSize = 16.sp,
-                                color = colorResource(com.example.core.R.color.air)
+                            VerticalMargin(Paddings.medium)
+                            DesignedText(
+                                context.resources.getString(
+                                    com.example.core.R.string.name_of_train_s,
+                                    item.nameOfTrain
+                                )
+                            )
+                            VerticalMargin(Paddings.medium)
+                            DesignedText(
+                                context.resources.getString(
+                                    com.example.core.R.string.quantity_of_exercises_s,
+                                    item.exercises.size.toString()
+                                )
+                            )
+                            VerticalMargin(Paddings.medium)
+                            Box(
+                                modifier = Modifier.fillMaxWidth()
+                                    .padding(horizontal = Paddings.medium)
+                            ) {
+                                Button(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    onClick = {
+                                        viewModel.deleteTrainingResult(item)
+                                    },
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = colorResource(com.example.core.R.color.red_delete)
+                                    )
+                                ) {
+                                    Text(
+                                        text = stringResource(com.example.core.R.string.delete),
+                                        fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
+                                        fontSize = 16.sp,
+                                        color = colorResource(com.example.core.R.color.air)
+                                    )
+                                }
+                            }
+                            VerticalMargin(Paddings.medium)
+                            Spacer(
+                                modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .height(Paddings.small)
+                                    .background(
+                                        color = colorResource(
+                                            com.example.core.R.color.aquamarine
+                                        )
+                                    )
                             )
                         }
                     }
-                    VerticalMargin(Paddings.medium)
-                    Spacer(
-                        modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .height(Paddings.small)
-                            .background(
-                                color = colorResource(
-                                    com.example.core.R.color.aquamarine
-                                )
-                            )
-                    )
                 }
+            } else {
+                EmptyListText(stringResource(com.example.core.R.string.no_training_results_saved))
             }
         }
     }

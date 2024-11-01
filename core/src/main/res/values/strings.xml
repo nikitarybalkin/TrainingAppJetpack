@@ -14,11 +14,12 @@
     <string name="workout_must_contain">The workout must contain at least one exercise</string>
     <string name="start_train">Start train</string>
     <string name="main">Main</string>
-    <string name="your_trainings">Your trainings</string>
+    <string name="your_trainings">Trainings</string>
     <string name="add">Add</string>
-    <string name="your_results">Your results</string>
+    <string name="your_results">Results</string>
     <string name="delete">Delete</string>
     <string name="no_training_saved">No one training saved</string>
+    <string name="no_training_results_saved">No one training results saved</string>
     <string name="to_choose_exercise">To choose the exercise tap here</string>
     <string name="number_of_set">Number of set</string>
     <string name="enter_count_in_set">Enter count in set</string>
@@ -40,5 +41,6 @@
     <string name="alert_title">The entered data will not be saved</string>
     <string name="alert_button_yes">Yes</string>
     <string name="alert_button_no">No, I changed my mind</string>
+    <string name="user_manual_text">1. Go to the add section\n2. Create a training\n3. Go to the Your trainings section\n4. Select the training plan you created\n5. Record the results of the training\n6. In the training results section, you can see all the information about the training</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.feature.trainings.presentation
 
 import android.content.Context
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -35,8 +39,9 @@ fun TrainingResultsDetailedScreen(
     context: Context
 ) {
     val viewModel: TrainingResultsDetailedViewModel = viewModel(factory = viewModelFactory)
+    val trainingResult = viewModel.trainingResult.collectAsState()
     viewModel.getTrainingResultByID(id)
-    viewModel.trainingResult?.let {
+    trainingResult.value?.let {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = colorResource(R.color.grey)

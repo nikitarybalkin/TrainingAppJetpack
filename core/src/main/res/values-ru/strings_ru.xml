@@ -15,11 +15,12 @@
     <string name="workout_must_contain">Тренировка должна содержать хотя бы одно упражнение</string>
     <string name="start_train">Начать тренировку</string>
     <string name="main">Главная</string>
-    <string name="your_trainings">Твои тренировки</string>
+    <string name="your_trainings">Тренировки</string>
     <string name="add">Добавить</string>
-    <string name="your_results">Твои результаты</string>
+    <string name="your_results">Результаты</string>
     <string name="delete">Удалить</string>
     <string name="no_training_saved">Ни одной тренировки не сохранено</string>
+    <string name="no_training_results_saved">Результатов вашей тренировки не сохранено</string>
     <string name="to_choose_exercise">Чтобы выбрать упражнение нажмите здесь</string>
     <string name="number_of_set">Номер подхода</string>
     <string name="enter_count_in_set">Введите количество повторений</string>
@@ -41,5 +42,6 @@
     <string name="alert_title">Введённые данные не будут сохранены</string>
     <string name="alert_button_yes">Да</string>
     <string name="alert_button_no">Нет, я передумал</string>
+    <string name="user_manual_text">1. Перейдите в раздел добавить\n2. Создайте тренировку\n3. Перейдите в раздел Твои тренировки\n4. Выберите тренировочный план, который вы создали\n5. Записывайте результаты тренировки\n6. В разделе тренировочные результаты, можете посмотреть всю информацию о проведённой тренировке</string>
 
 </resources>

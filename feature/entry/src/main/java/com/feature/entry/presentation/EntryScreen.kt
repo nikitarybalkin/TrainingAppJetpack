@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -32,6 +33,7 @@ import com.example.core.common_files.Paddings
 import com.example.core.common_files.common_ui.Routes
 import com.example.core.common_files.common_ui.VerticalMargin
 import com.example.database.data.model.TrainingResultLocalModel
+import com.feature.entry.R
 
 @Composable
 fun EntryScreen(
@@ -69,7 +71,8 @@ fun TableLastTrainingResult(
             color = colorResource(com.example.core.R.color.air)
         )
         VerticalMargin(Paddings.medium)
-        Text(
+        if (lastTrainingResult != null) {
+            Text(
             modifier = Modifier.wrapContentSize(),
             text = stringResource(com.example.core.R.string.your_last_training),
             fontFamily = FontFamily(Font(com.example.core.R.font.archivo_sembold)),
@@ -123,12 +126,11 @@ fun TableLastTrainingResult(
                 .background(colorResource(com.example.core.R.color.blue_light))
         )
         //Значения таблицы
-        lastTrainingResult?.let {
             Row (
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        navController.navigate("${Routes.TRAININGRESULTSDETAILEDSCREEN.name}/${it.id}")
+                        navController.navigate("${Routes.TRAININGRESULTSDETAILEDSCREEN.name}/${lastTrainingResult.id}")
                     }
                 ,
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -136,7 +138,7 @@ fun TableLastTrainingResult(
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(0.3f),
-                    text = it.date,
+                    text = lastTrainingResult.date,
                     fontFamily = FontFamily(Font(com.example.core.R.font.archivo_regular)),
                     textAlign = TextAlign.Center,
                     fontSize = 20.sp,
@@ -145,7 +147,7 @@ fun TableLastTrainingResult(
                 Spacer(modifier = Modifier.width(4.dp).height(50.dp).background(colorResource(com.example.core.R.color.blue_light)))
                 Text(
                     modifier = Modifier.fillMaxWidth(0.3f),
-                    text = it.nameOfTrain,
+                    text = lastTrainingResult.nameOfTrain,
                     fontFamily = FontFamily(Font(com.example.core.R.font.archivo_regular)),
                     textAlign = TextAlign.Center,
                     fontSize = 20.sp,
@@ -154,7 +156,7 @@ fun TableLastTrainingResult(
                 Spacer(modifier = Modifier.width(4.dp).height(50.dp).background(colorResource(com.example.core.R.color.blue_light)))
                 Text(
                     modifier = Modifier.fillMaxWidth(0.3f),
-                    text = it.time,
+                    text = lastTrainingResult.time,
                     fontFamily = FontFamily(Font(com.example.core.R.font.archivo_regular)),
                     textAlign = TextAlign.Center,
                     fontSize = 20.sp,
@@ -167,7 +169,28 @@ fun TableLastTrainingResult(
                     .height(8.dp)
                     .background(colorResource(com.example.core.R.color.blue_light))
             )
+        } else {
+            UserManual()
         }
+
+    }
+}
+
+@Composable
+fun UserManual() {
+    Column (
+        modifier = Modifier.padding(
+            horizontal = Paddings.medium
+        )
+    ) {
+        Text(
+            modifier = Modifier.wrapContentSize(),
+            text = stringResource(com.example.core.R.string.user_manual_text),
+            fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
+            fontSize = 30.sp,
+            textAlign = TextAlign.Start,
+            color = Color.Gray
+        )
     }
 }
 
