@@ -98,12 +98,17 @@ fun TrainingScreen(
             verticalArrangement = Arrangement.Top
         ) {
             VerticalMargin(Paddings.medium)
-            Text(
-                text = training.nameOfTrainingEntity,
-                fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
-                fontSize = 30.sp,
-                color = colorResource(com.example.core.R.color.air)
-            )
+            Box (
+                modifier = Modifier.padding(horizontal = Paddings.medium)
+            ) {
+                Text(
+                    text = training.nameOfTrainingEntity,
+                    fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
+                    fontSize = 30.sp,
+                    color = colorResource(com.example.core.R.color.air)
+                )
+            }
+
             VerticalMargin(Paddings.medium)
             Spacer(
                 modifier = Modifier.fillMaxWidth().height(Paddings.extraSmall).background(
@@ -111,15 +116,22 @@ fun TrainingScreen(
                 )
             )
             VerticalMargin(Paddings.medium)
-            Text(
-                modifier = Modifier.clickable {
-                    bottomSheetExercisesIsOpen.value = true
-                },
-                text = selectedExercise.value,
-                fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
-                fontSize = 20.sp,
-                color = colorResource(com.example.core.R.color.air)
-            )
+            Box(
+                modifier = Modifier.padding(
+                    horizontal = Paddings.medium
+                )
+            ) {
+                Text(
+                    modifier = Modifier.clickable {
+                        bottomSheetExercisesIsOpen.value = true
+                    },
+                    text = selectedExercise.value,
+                    fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
+                    fontSize = 20.sp,
+                    textAlign = TextAlign.Center,
+                    color = colorResource(com.example.core.R.color.air)
+                )
+            }
 
             if (bottomSheetTrainingResultsIsOpen.value) {
                 BottomSheetTrainingResults(
@@ -149,12 +161,17 @@ fun TrainingScreen(
                 )
             )
             VerticalMargin(Paddings.medium)
-            Text(
-                text = if (currentSet.value == 0) stringResource(com.example.core.R.string.number_of_set) else currentSet.value.toString(),
-                fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
-                fontSize = 20.sp,
-                color = colorResource(com.example.core.R.color.air)
-            )
+            Box(modifier = Modifier.padding(
+                Paddings.medium
+            )) {
+                Text(
+                    text = if (currentSet.value == 0) stringResource(com.example.core.R.string.number_of_set) else currentSet.value.toString(),
+                    fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
+                    fontSize = 20.sp,
+                    color = colorResource(com.example.core.R.color.air)
+                )
+            }
+
             VerticalMargin(Paddings.medium)
             Spacer(
                 modifier = Modifier.fillMaxWidth().height(Paddings.extraSmall).background(
@@ -253,7 +270,7 @@ fun TrippleButton(
     Box(
         modifier = Modifier
             .fillMaxWidth(0.8f)
-            .height(80.dp)
+            .height(110.dp)
             .clip(RoundedCornerShape(24.dp))
             .background(colorResource(com.example.core.R.color.blue_light))
     ) {
@@ -262,12 +279,12 @@ fun TrippleButton(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.4f),
-                horizontalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier.fillMaxWidth().fillMaxHeight(0.6f),
+                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Button(
-                    modifier = Modifier,
+                    modifier = Modifier.fillMaxWidth(0.5f),
                     onClick = {
                         clickNextSet(
                             countInSet = countInSet,
@@ -282,7 +299,8 @@ fun TrippleButton(
                 ) {
                     Text(
                         text = stringResource(com.example.core.R.string.next_set),
-                        color = Color.Black
+                        color = Color.Black,
+                        textAlign = TextAlign.Center
                     )
                 }
                 Spacer(
@@ -312,7 +330,8 @@ fun TrippleButton(
                 ) {
                     Text(
                         text = stringResource(com.example.core.R.string.next_exercise),
-                        color = if (nextExerciseEnabled.value) Color.Black else Color.Gray
+                        color = if (nextExerciseEnabled.value) Color.Black else Color.Gray,
+                        textAlign = TextAlign.Center
                     )
                 }
             }
@@ -496,7 +515,6 @@ fun BottomSheetTrainingResults(
             )
         } else {
             idForDetailed.value?.let {
-                Log.d("LOL", "idForDetailed != null == ${it}")
                 TrainingResultsDetailedScreen(
                     viewModelFactory = viewModelFactory,
                     context = context,

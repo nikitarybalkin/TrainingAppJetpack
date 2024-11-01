@@ -33,10 +33,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.core.common_files.Paddings
+import com.example.core.common_files.common_ui.EmptyListText
 import com.example.core.common_files.common_ui.Routes
 import com.example.core.common_files.common_ui.VerticalMargin
 import com.example.database.data.model.TrainingLocalModel
 import com.example.database.utils.ConvertersArguments
+import com.feature.trainings.R
 
 @Composable
 fun SavedTrainingsScreen(
@@ -99,26 +101,12 @@ fun SavedTrainingsScreen(
                 }
             }
         } else {
-            NoOneTrainingText()
+            EmptyListText(stringResource(com.example.core.R.string.no_training_saved))
         }
     }
 }
 
-@Composable
-fun NoOneTrainingText() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = stringResource(com.example.core.R.string.no_training_saved),
-            fontFamily = FontFamily(Font(com.example.core.R.font.archivo_bold)),
-            color = Color.Gray,
-            fontSize = 40.sp,
-            textAlign = TextAlign.Center
-        )
-    }
-}
+
 
 @Composable
 fun DesignedText(
